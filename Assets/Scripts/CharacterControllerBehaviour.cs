@@ -7,6 +7,7 @@ public class CharacterControllerBehaviour : MonoBehaviour
 {
 
     private CharacterController _charContrl;
+    private Vector3 _velocity = Vector3.zero;
 
 	void Start ()
     {
@@ -27,7 +28,15 @@ public class CharacterControllerBehaviour : MonoBehaviour
 	
 	void Update ()
     {
-		
+        if(!_charContrl.isGrounded)
+        _velocity += Physics.gravity * Time.deltaTime;
+
+
+        Vector3 movement = _velocity * Time.deltaTime;
+
+        _charContrl.Move(movement);
+
+
 	}
 
 }
